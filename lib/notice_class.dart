@@ -82,4 +82,5 @@ class Notice extends StatelessWidget {
       style: new TextStyle(color: Colors.grey, fontSize: 10.0),
     );
   }
+
 }

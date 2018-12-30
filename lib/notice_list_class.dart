@@ -13,6 +13,9 @@ class NoticeList extends StatefulWidget{
 
 class _NoticeListPageState extends State<NoticeList>{
 
+  List _categorys = new List();
+  var _category_selected = 0;
+
   List _news = new List();
   var repository = new NewsApi();
   int _selectedIndex = 0;
@@ -26,7 +29,12 @@ class _NoticeListPageState extends State<NoticeList>{
           centerTitle: true,
         ),
       body: new Container(
-        child: _getListViewWidget(),
+        child: new Column(
+          children: <Widget>[
+            _getListcategory(),
+            new Expanded(child: _getListViewWidget(), )
+          ],
+        )
       ),
         bottomNavigationBar: _getBottomNavigationBar()
     );
@@ -70,6 +78,7 @@ class _NoticeListPageState extends State<NoticeList>{
 
   @override
   void initState() {
+    setCategorys();
     loadNews();
   }
 
@@ -104,6 +113,64 @@ class _NoticeListPageState extends State<NoticeList>{
 
       });
     });
+  }
+
+  Widget _getListcategory() {
+
+    ListView listCategory = new ListView.builder(
+        itemCount: _categorys.length,
+        scrollDirection: Axis.horizontal, // Listanfo categorias na horizontal
+        itemBuilder: (context, index){
+          return _createCategoryItem(index);
+        }
+    );
+    return new Container(
+      height: 55.0,
+      child: listCategory,
+    );
+  }
+
+  Widget _createCategoryItem(index) {
+
+    return new GestureDetector(
+      onTap: () {
+        onTapCategory(index);
+      },
+      child: new Center(
+        child: new Container(
+          margin: new EdgeInsets.only(left:10.0),
+          child: new Material(
+            //shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+            elevation: 2.0,
+            borderRadius: const BorderRadius.all(const Radius.circular(25.0)),
+            clipBehavior: Clip.antiAlias,
+            child: new Container(
+              padding: new EdgeInsets.only(left: 12.0, top: 7.0, bottom: 7.0, right: 12.0),
+              color: _category_selected == index ? Colors.blue[800]:Colors.blue[500],
+              child: new Text(_categorys[index],
+                style: new TextStyle(
+                    color: Colors.white
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  onTapCategory(index) {
+    setState(() {
+      _category_selected = index;
+    });
+  }
+
+  void setCategorys() {
+    _categorys.add("Programação");
+    _categorys.add("IA");
+    _categorys.add("Tecnologia");
+    _categorys.add("Educação");
+    _categorys.add("Mobile");
   }
 
 }

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class NewsApi{
 
-    //String url = "";
+    //String url = "https://api.themoviedb.org/3/movie/top_rated?api_key=f68473c740a0492a5b058938bbfa9351&page=2";
 //
 //  Future <List> loadNews() async{
 //    // Make a HTTP GET request to the CoinMarketCap API.
