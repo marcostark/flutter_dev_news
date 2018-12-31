@@ -1,7 +1,7 @@
-import 'package:dev_news/screens/categories.dart';
-import 'package:dev_news/screens/info.dart';
+import 'package:dev_news/tabs/categories.dart';
+import 'package:dev_news/tabs/info.dart';
 import 'package:flutter/material.dart';
-import 'package:dev_news/screens/home.dart';
+import 'package:dev_news/tabs/home.dart';
 
 void main() => runApp(DevNewsApp());
 
@@ -15,7 +15,6 @@ class DevNewsApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: new Tabs(),
-
     );
   }
 }
