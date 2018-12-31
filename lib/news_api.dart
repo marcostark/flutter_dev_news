@@ -4,21 +4,28 @@ import 'package:http/http.dart' as http;
 
 class NewsApi{
 
-    //String url = "https://api.themoviedb.org/3/movie/top_rated?api_key=f68473c740a0492a5b058938bbfa9351&page=2";
-//
+
+     // String url = "https://api.themoviedb.org/3/movie/top_rated?api_key=f68473c740a0492a5b058938bbfa9351";
+    //  String url = "https://raw.githubusercontent.com/RafaelBarbosatec/tutorial_flutter_medium/master/api/news.json";
+
+
+
 //  Future <List> loadNews() async{
 //    // Make a HTTP GET request to the CoinMarketCap API.
 //    // Await basically pauses execution until the get() function returns a Response
 //    try{
-//      http.Response response = await http.get(url);
+//      http.Response response = await http.get(
+//          url
+//      );
 //      // Using the JSON class to decode the JSON String
 //      const JsonDecoder decoder = const JsonDecoder();
+//      print(response.body);
+//
 //      return decoder.convert(response.body);
 //
 //    } on Exception catch(_){
 //      return null;
 //    }
-//
 //  }
     Future <List> loadNews() async{
 

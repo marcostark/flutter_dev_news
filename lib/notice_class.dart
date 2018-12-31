@@ -1,3 +1,4 @@
+import 'package:dev_news/notice_detail.dart';
 import 'package:flutter/material.dart';
 
 class Notice extends StatelessWidget {
@@ -25,7 +26,11 @@ class Notice extends StatelessWidget {
       child: new Material(
         borderRadius: new BorderRadius.circular(6.0),
         elevation: 2.0,
-        child: _getListTile(),
+        child: new InkWell(
+          onTap: showDetail,
+          splashColor: Colors.blue,
+          child: _getListTile(),
+        ),
       ),
     );
   }
@@ -37,7 +42,9 @@ class Notice extends StatelessWidget {
       child: new Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new FadeInImage.assetNetwork(placeholder: '', image: _imagem,fit: BoxFit.cover,width: 95.0, height: 95.0,),
+          new FadeInImage.assetNetwork(
+            placeholder: '', image: _imagem,fit: BoxFit.cover,
+            width: 95.0, height: 95.0,),
           _getColumnText(_titulo, _data, _descricao),
         ],
       ),
@@ -81,6 +88,13 @@ class Notice extends StatelessWidget {
       date,
       style: new TextStyle(color: Colors.grey, fontSize: 10.0),
     );
+  }
+
+  showDetail() {
+    Navigator.of(_buildContext)
+        .push(new MaterialPageRoute(builder: (BuildContext context) {
+      return new Detail(_imagem,_titulo,_data,_descricao);
+    }));
   }
 
 }

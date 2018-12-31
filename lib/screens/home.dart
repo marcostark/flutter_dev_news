@@ -1,8 +1,8 @@
 import 'package:dev_news/notice_class.dart';
 import 'package:flutter/material.dart';
-import 'news_api.dart';
+import '../news_api.dart';
 
-class NoticeList extends StatefulWidget{
+class Home extends StatefulWidget{
 
   final state = new _NoticeListPageState();
 
@@ -11,23 +11,22 @@ class NoticeList extends StatefulWidget{
 
 }
 
-class _NoticeListPageState extends State<NoticeList>{
+class _NoticeListPageState extends State<Home>{
 
   List _categorys = new List();
   var _category_selected = 0;
 
+  PageController _tabController;
+  var _title_app = null;
+
   List _news = new List();
   var repository = new NewsApi();
-  int _selectedIndex = 0;
+  int _tab = 0;
 
   @override
   Widget build(BuildContext context) {
 
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Dev News"),
-          centerTitle: true,
-        ),
       body: new Container(
         child: new Column(
           children: <Widget>[
@@ -36,44 +35,20 @@ class _NoticeListPageState extends State<NoticeList>{
           ],
         )
       ),
-        bottomNavigationBar: _getBottomNavigationBar()
+//
+//        //Content of tabs
+//        body: new PageView(
+//          controller: _tabController,
+//          onPageChanged: onTabChanged,
+//          children: <Widget>[
+//            //_getListcategory(),
+//            new Categories(),
+//            new Info()
+//          ],
+//        ),
+//
+//        bottomNavigationBar: _getBottomNavigationBar()
     );
-  }
-
-
-  //BottomNavigationBar
-
-  Widget _getBottomNavigationBar(){
-    return new BottomNavigationBar(
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
-        //type: BottomNavigationBarType.shifting, // Colorindo
-    items: [
-      new BottomNavigationBarItem(
-          icon: Icon(Icons.code),
-          title: Text('Inicio'),
-          //backgroundColor: Colors.green
-          ),
-
-      new BottomNavigationBarItem(
-        icon: Icon(Icons.category),
-        title: Text('Categorias'),
-        //backgroundColor: Colors.green
-      ),
-
-      new BottomNavigationBarItem(
-          icon: Icon(Icons.info),
-          title: Text('Sobre'),
-          //backgroundColor: Colors.green
-          )
-    ],
-    );
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 
   @override
@@ -108,6 +83,11 @@ class _NoticeListPageState extends State<NoticeList>{
             item['tittle'],
             item['date'],
             item['description']
+
+//            item['backdrop_path'],
+//            item['tittle'],
+//            item['release_date'],
+//            item['overview']
         );
         _news.add(notice);
 
@@ -172,5 +152,5 @@ class _NoticeListPageState extends State<NoticeList>{
     _categorys.add("Educação");
     _categorys.add("Mobile");
   }
-
 }
+
